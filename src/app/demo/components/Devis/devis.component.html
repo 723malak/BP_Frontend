@@ -27,7 +27,7 @@
 
             </ng-template>
         </p-toolbar>
-        <p-table #dt1 [value]="filteredDevis" dataKey="id" [rows]="6" [loading]="loading" [rowHover]="true" styleClass="p-datatable-gridlines" [paginator]="true" [globalFilterFields]="['numero','date','equipementE','prestataire','montant','assurance','rejected','technicien','agence','traitepar']" responsiveLayout="scroll">
+        <p-table #dt1 [value]="filteredDevis" dataKey="id" [rows]="6" [loading]="loading" [rowHover]="true" styleClass="p-datatable-gridlines" [paginator]="true" [globalFilterFields]="['numero','date','equipementE','prestataire','montant','assurance','rejected','technicien','agence','traitepar']">
             <ng-template pTemplate="caption">
                 <div class="flex justify-content-between flex-column sm:flex-row">
 
@@ -40,49 +40,49 @@
             </ng-template>
             <ng-template pTemplate="header">
                 <tr>
-                    <th style="min-width: 12rem">
+                    <th style="min-width: 8rem">
                         <div class="flex justify-content-between align-items-center">
                             NUMERO
                             <p-columnFilter type="text" field="numero" display="menu" placeholder="Search by numero"></p-columnFilter>
                         </div>
                     </th>
-                    <th style="min-width: 12rem">
+                    <th style="min-width: 7rem">
                         <div class="flex justify-content-between align-items-center">
                             DATE
                             <p-columnFilter type="date" field="date" display="menu" placeholder="dd/mm/yyyy"></p-columnFilter>
                         </div>
                     </th>
-                    <th style="min-width: 14rem">
+                    <th style="min-width: 8rem">
                         <div class="flex justify-content-between align-items-center">
                             EQUIPEMENT ENDOMMAGE
                             <p-columnFilter type="text" field="equipementE" display="menu" placeholder="Search by equipement"></p-columnFilter>
                         </div>
                     </th>
-                    <th style="min-width: 14rem">
+                    <th style="min-width: 8rem">
                         <div class="flex justify-content-between align-items-center">
                             PRESTATAIRE
                             <p-columnFilter type="text" field="prestataire" display="menu" placeholder="Search by prestataire"></p-columnFilter>
                         </div>
                     </th>
-                    <th style="min-width: 14rem">
+                    <th style="min-width: 7rem">
                         <div class="flex justify-content-between align-items-center">
                             MONTANT
                             <p-columnFilter type="numeric" field="montant" display="menu" currency="MAD"></p-columnFilter>
                         </div>
                     </th>
-                    <th style="min-width: 14rem">
+                    <th style="min-width: 5rem">
                         <div class="flex justify-content-between align-items-center">
                             ASSURANCE
                             <p-columnFilter type="boolean" field="assurence" display="menu"></p-columnFilter>
                         </div>
                     </th>
-                    <th style="min-width: 14rem">
+                    <th style="min-width: 5rem">
                         <div class="flex justify-content-between align-items-center">
                             REJECTED
                             <p-columnFilter type="boolean" field="rejected" display="menu"></p-columnFilter>
                         </div>
                     </th>
-                    <th style="min-width: 14rem">
+                    <th style="min-width: 10rem">
                         <div class="flex justify-content-between align-items-center">
                             TECHNICIEN
                             <p-columnFilter field="technicien" matchMode="in" display="menu" [showMatchModes]="false" [showOperator]="false" [showAddButton]="false">
@@ -103,7 +103,7 @@
                             </p-columnFilter>
                         </div>
                     </th>
-                    <th style="min-width: 14rem">
+                    <th style="min-width: 10rem">
                         <div class="flex justify-content-between align-items-center">
                             AGENCE
                             <p-columnFilter field="agence" matchMode="in" display="menu" [showMatchModes]="false" [showOperator]="false" [showAddButton]="false">
@@ -124,29 +124,12 @@
                             </p-columnFilter>
                         </div>
                     </th>
-
-                    <th style="min-width: 14rem">
+                    <th style="min-width: 8rem">
                         <div class="flex justify-content-between align-items-center">
                             TRAITE PAR
-                            <!--<p-columnFilter field="technicien" matchMode="in" display="menu" [showMatchModes]="false" [showOperator]="false" [showAddButton]="false">
-                                <ng-template pTemplate="header">
-                                    <div class="px-3 pt-3 pb-0">
-                                        <span class="font-bold">Technicien</span>
-                                    </div>
-                                </ng-template>
-                                <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-                                    <p-multiSelect [ngModel]="value" [options]="techniciens" placeholder="Any" (onChange)="filter($event.value)" optionLabel="nom">
-                                        <ng-template let-option pTemplate="item">
-                                            <div class="p-multiselect-representative-option">
-                                                <span class="ml-2">{{option.nom}}</span>
-                                            </div>
-                                        </ng-template>
-                                    </p-multiSelect>
-                                </ng-template>
-                            </p-columnFilter>-->
                         </div>
                     </th>
-                    <th *ngIf="userRole === 'SUPERVISOR'">
+                    <th style="min-width: 6rem" *ngIf="userRole === 'SUPERVISOR'">
 
                     </th>
                 </tr>
@@ -170,11 +153,9 @@
                     </td>
                     <td>
                         <i class="pi" [ngClass]="{'true-icon pi-check-circle text-green-500': devis.assurance, 'false-icon pi-times-circle text-pink-500': !devis.assurance}"></i>
-
                     </td>
                     <td>
                         <i class="pi" [ngClass]="{'true-icon pi-check-circle text-green-500': devis.rejected, 'false-icon pi-times-circle text-pink-500': !devis.rejected}"></i>
-
                     </td>
                     <td>
                         {{devis.technicien.nom}}
@@ -185,11 +166,10 @@
                     <td>
                         {{devis.traitepar.prenom}}
                     </td>
-                    <td *ngIf="userRole === 'SUPERVISOR'">
+                    <td style="min-width: 6rem" *ngIf="userRole === 'SUPERVISOR'">
                         <button pButton type="button" icon="pi pi-pencil" class="p-button-success mr-2" (click)="editDevis(devis)"></button>
                         <button pButton type="button" icon="pi pi-trash" class="p-button-warning mr-2" (click)="deleteDevis(devis.id)"></button>
                     </td>
-
                 </tr>
             </ng-template>
             <ng-template pTemplate="emptymessage">
@@ -208,9 +188,6 @@
 
     <p-dialog [(visible)]="devisDialog" [style]="{width: '600px'}" header="Add | Update Devis" [modal]="true" class="p-fluid">
         <ng-template pTemplate="content">
-
-
-
             <div class="field">
                 <label for="numero" style="text-transform: capitalize">Numero</label>
                 <input type="text" pInputText id="numero" [(ngModel)]="devis.numero" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !devis.numero}"/>
@@ -283,10 +260,6 @@
                 <small class="ng-dirty ng-invalid" *ngIf="submitted && !devis.numero" style="color:darkred">This field is required.</small>
 
             </div>
-
-
-
-
         </ng-template>
 
         <ng-template pTemplate="footer">
@@ -297,4 +270,3 @@
 </div>
 </body>
 </html>
-
